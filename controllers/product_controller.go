@@ -22,8 +22,9 @@ func AllProduct(c echo.Context) error {
 	category := c.FormValue("category")
 	image := c.FormValue("image")
 	tutorial := c.FormValue("tutorial")
+	productdescription := c.FormValue("productdescription")
 
-	result, err := models.AllProduct(productname, category, image, tutorial)
+	result, err := models.AllProduct(productname, category, image, tutorial, productdescription)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
@@ -36,13 +37,14 @@ func UpdateProduct(c echo.Context) error {
 	category := c.FormValue("category")
 	image := c.FormValue("image")
 	tutorial := c.FormValue("tutorial")
+	productdescription := c.FormValue("productdescription")
 
 	conv_id, err := strconv.Atoi(idproduct)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
-	result, err := models.UpdateProduct(conv_id, productname, category, image, tutorial)
+	result, err := models.UpdateProduct(conv_id, productname, category, image, tutorial, productdescription)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}

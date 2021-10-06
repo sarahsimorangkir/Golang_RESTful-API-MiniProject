@@ -5,23 +5,22 @@ import (
 	"net/http"
 )
 
-type Product struct {
-	IdProduct          int    `json : "idproduct"`
-	ProductName        string `json : "productname"`
-	Category           string `json : "category"`
-	Image              string `json : "image"`
-	Tutorial           string `json : "tutorial"`
-	ProductDescription string `json : "productdescription"`
+type Event struct {
+	IdEvent          int    `json : "idevent"`
+	EventName        string `json : "eventname"`
+	EventSchedule    string `json : "eventschedule"`
+	EventDescription string `json : "eventdescription"`
+	Image            string `json : "image"`
 }
 
-func TakeProduct() (Response, error) {
-	var obj Product
-	var arrobj []Product
+func TakeEvent() (Response, error) {
+	var obj Event
+	var arrobj []Event
 	var res Response
 
 	con := db.CreateCon()
 
-	sqlStatement := "SELECT * FROM product"
+	sqlStatement := "SELECT * FROM event"
 
 	rows, err := con.Query(sqlStatement)
 	defer rows.Close()
@@ -31,7 +30,7 @@ func TakeProduct() (Response, error) {
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&obj.IdProduct, &obj.ProductName, &obj.Category, &obj.Image, &obj.Tutorial, &obj.ProductDescription)
+		err = rows.Scan(&obj.IdEvent, &obj.EventName, &obj.EventSchedule, &obj.EventDescription, &obj.Image)
 		if err != nil {
 			return res, err
 		}
@@ -46,18 +45,18 @@ func TakeProduct() (Response, error) {
 	return res, nil
 }
 
-func AllProduct(productname string, category string, image string, tutorial string, productdescription string) (Response, error) {
+func AllEvent(eventname string, eventschedule string, eventdescription string, image string) (Response, error) {
 	var res Response
 
 	con := db.CreateCon()
 
-	sqlStatement := "INSERT product (productname, category, image, tutorial, productdescription) VALUES (?,?,?,?,?)"
+	sqlStatement := "INSERT event (eventname, eventschedule, eventdescription, image) VALUES (?,?,?,?,?)"
 	statement, err := con.Prepare(sqlStatement)
 	if err != nil {
 		return res, err
 	}
 
-	result, err := statement.Exec(productname, category, image, tutorial, productdescription)
+	result, err := statement.Exec(eventname, eventschedule, eventdescription, image)
 	if err != nil {
 		return res, err
 	}
@@ -77,19 +76,19 @@ func AllProduct(productname string, category string, image string, tutorial stri
 
 }
 
-func UpdateProduct(idproduct int, productname string, category string, image string, tutorial string, productdescription string) (Response, error) {
+func UpdateEvent(idevent int, eventname string, eventschedule string, eventdescription string, image string) (Response, error) {
 	var res Response
 
 	con := db.CreateCon()
 
-	sqlStatement := "UPDATE product SET productname = ?,  category = ?, image = ?, productdescription = ?   WHERE idproduct = ?"
+	sqlStatement := "UPDATE event SET eventname = ?,  eventschedule = ?, eventdescription = ?, image = ?   WHERE idevent = ?"
 
 	statement, err := con.Prepare(sqlStatement)
 	if err != nil {
 		return res, err
 	}
 
-	result, err := statement.Exec(productname, category, image, tutorial, productdescription, idproduct)
+	result, err := statement.Exec(eventname, eventschedule, eventdescription, image)
 	if err != nil {
 		return res, err
 	}
@@ -108,19 +107,19 @@ func UpdateProduct(idproduct int, productname string, category string, image str
 	return res, nil
 }
 
-func DeleteProduct(idproduct int) (Response, error) {
+func DeleteEvent(idevent int) (Response, error) {
 	var res Response
 
 	con := db.CreateCon()
 
-	sqlStatement := "DELETE FROM product WHERE idproduct = ? "
+	sqlStatement := "DELETE FROM event WHERE idevent = ? "
 
 	statement, err := con.Prepare(sqlStatement)
 	if err != nil {
 		return res, err
 	}
 
-	result, err := statement.Exec(idproduct)
+	result, err := statement.Exec(idevent)
 	if err != nil {
 		return res, err
 	}
