@@ -36,7 +36,7 @@ func CheckLogin(email, password string) (bool, error) {
 	}
 
 	match, err := helpers.CheckPasswordHash(password, pwd)
-	if match {
+	if !match {
 		fmt.Println("Password doesn't match")
 		return false, err
 	}
