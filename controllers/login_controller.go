@@ -23,9 +23,9 @@ func CheckLogin(c echo.Context) error {
 		return echo.ErrUnauthorized
 	}
 
-	token, := jwt.New() 
+	token, := jwt.New() //pas ngetik ini gabisa autocomplete n auto impor
 	// return c.String(http.StatusOK, "Login Success")
-	test
+
 }
 
 func GenerateHashPassword(c echo.Context) error {
