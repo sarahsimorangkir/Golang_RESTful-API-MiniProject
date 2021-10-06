@@ -24,7 +24,8 @@ func CheckLogin(c echo.Context) error {
 	}
 
 	token, := jwt.New() 
-	// return c.String(http.StatusOK, "Loginn Success")
+	// return c.String(http.StatusOK, "Login Success")
+	test
 }
 
 func GenerateHashPassword(c echo.Context) error {
