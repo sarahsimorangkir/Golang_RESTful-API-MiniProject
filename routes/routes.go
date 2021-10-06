@@ -2,6 +2,7 @@ package routes
 
 import (
 	"echo-rest/controllers"
+	"echo-rest/middleware"
 	"net/http"
 
 	"github.com/labstack/echo"
@@ -15,7 +16,7 @@ func Init() *echo.Echo {
 	})
 
 	//Admin
-	e.GET("/admin", controllers.TakeAdmin)
+	e.GET("/admin", controllers.TakeAdmin, middleware.IsAutenthicated)
 	e.POST("/admin", controllers.AllAdmin)
 	e.PUT("/admin", controllers.UpdateAdmin)
 	e.DELETE("/admin", controllers.DeleteAdmin)
