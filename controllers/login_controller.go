@@ -23,8 +23,8 @@ func CheckLogin(c echo.Context) error {
 		return echo.ErrUnauthorized
 	}
 
-	token, := jwt.New()
-	// return c.String(http.StatusOK, "Login Success")
+	token, := jwt.New() 
+	// return c.String(http.StatusOK, "Loginn Success")
 }
 
 func GenerateHashPassword(c echo.Context) error {
