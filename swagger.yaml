@@ -1,0 +1,279 @@
+swagger: "2.0"
+info:
+  description: "API for find creativity event, art, and make creativity items."
+  version: "1.0.0"
+  title: "KreasikuApp"
+  contact:
+    email: "sarahsimorangkir34@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+tags:
+- name: "Admin"
+  description: "Operations that available to regular users"
+- name: "Account"
+  description: "Operations that available to regular users"
+- name: "Product"
+  description: "Operations that available to regular users"
+- name: "Event"
+  description: "Operations that available to regular users"
+- name: "Art"
+  description: "Operations that available to regular users"
+
+
+paths:
+  /admin:
+    get:
+      tags:
+      - "admin"
+      summary: "Data of admin"
+      description: "By accesing this, it will show all the data of admin"
+      operationId: "AllAdmin"
+      responses:
+        200:
+          description: "All admin data"
+        500:
+          description: "Internal server error"
+    put:
+      tags:
+      - "admin"
+      summary: "Update admin"
+      description: "update the data of admin"
+      operationId: "updateAdmin"
+      responses:
+        200:
+          description: "Success"
+        405:
+          description: "Validation exception"
+    post:
+      tags:
+      - "admin"
+      summary: "Add data admin"
+      description: "add the data of admin"
+      operationId: "addAdmin"
+      responses:
+        200:
+          description: "Success"
+        405:
+          description: "Validation exception"
+    delete:
+      tags:
+      - "admin"
+      summary: "Delete admin"
+      description: "delete the data of admin"
+      operationId: "deleteAdmin"
+      responses:
+        200:
+          description: "Success"
+        405:
+          description: "Validation exception"
+      
+  /login:
+    get:
+      tags:
+      - "login"
+      summary: "Data of login account"
+      description: "By accesing this, it will show all the data of login account"
+      operationId: "GenerateHashPassword"
+      responses:
+        200:
+          description: "Login Success"
+        500:
+          description: "Internal server error"
+    post:
+      tags:
+      - "login"
+      summary: "Check login"
+      description: "to check login data"
+      operationId: "CheckLogin"
+      responses:
+        200:
+          description: "Success"
+        405:
+          description: "Validation exception"
+    
+  /product:
+    get:
+      tags:
+      - "product"
+      summary: "Data of product"
+      description: "By accesing this, it will show all the data of product"
+      operationId: "AllProduct"
+      responses:
+        200:
+          description: "All product data"
+        500:
+          description: "Internal server error"
+    put:
+      tags:
+      - "product"
+      summary: "Update product"
+      description: "update the data of product"
+      operationId: "updateProduct"
+      responses:
+        200:
+          description: "Success"
+        405:
+          description: "Validation exception"
+    post:
+      tags:
+      - "product"
+      summary: "Add data product"
+      description: "add the data of product"
+      operationId: "addProduct"
+      responses:
+        200:
+          description: "Success"
+        405:
+          description: "Validation exception"
+    delete:
+      tags:
+      - "product"
+      summary: "Delete product"
+      description: "delete the data of product"
+      operationId: "deleteProduct"
+      responses:
+        200:
+          description: "Success"
+        405:
+          description: "Validation exception"
+  /event:
+    get:
+      tags:
+      - "event"
+      summary: "Data of event"
+      description: "By accesing this, it will show all the data of event"
+      operationId: "AllEvent"
+      responses:
+        200:
+          description: "All event data"
+        500:
+          description: "Internal server error"
+    put:
+      tags:
+      - "event"
+      summary: "Update event"
+      description: "update the data of event"
+      operationId: "updateEvent"
+      responses:
+        200:
+          description: "Success"
+        405:
+          description: "Validation exception"
+    post:
+      tags:
+      - "event"
+      summary: "Add data event"
+      description: "add the data of event"
+      operationId: "addEvent"
+      responses:
+        200:
+          description: "Success"
+        405:
+          description: "Validation exception"
+    delete:
+      tags:
+      - "event"
+      summary: "Delete event"
+      description: "delete the data of event"
+      operationId: "deleteEvent"
+      responses:
+        200:
+          description: "Success"
+        405:
+          description: "Validation exception"
+  /art:
+    get:
+      tags:
+      - "art"
+      summary: "Data of art"
+      description: "By accesing this, it will show all the data of art"
+      operationId: "AllArt"
+      responses:
+        200:
+          description: "All art data"
+        500:
+          description: "Internal server error"
+   
+definitions:
+  Login:
+    type: "object"
+    properties:
+      idaccount:
+        type: "integer"
+        example: 1
+      email:
+        type: "string"
+        example: sarah12@gmail.com
+  Admin:
+    type: "object"
+    properties:
+      idadm:
+        type: "integer"
+        example: 1
+      nameadm:
+        type: "string"
+        example: sarah omega yulie simorangkir
+      jk:
+        type: "string"
+        example: Perempuan
+      telp:
+        type: "string"
+        example: '081234567890'
+  Event:
+    type: "object"
+    properties:
+      idevent:
+        type: "integer"
+        example: 1
+      eventname: 
+        type: "string"
+        example: Pameran Patung se-Indonesia
+      eventschedule:
+        type: "string"
+        example : '2021-11-28 16:00:00'
+      eventdescription:
+        type: "string"
+        example: event ini adalah event pertunjukan patung seni yang dibuat oleh pekerja seni, yang juga akan dilakukan lelang.
+      image:
+        type: "string"
+        example: event1.jpg
+  Product:
+    type: "object"
+    properties:
+      idproduct:
+        type: "integer"
+        example: 1
+      productname:
+        type: "string"
+        example: Pot bunga dari rotan
+      category:
+        type: "string"
+        example: bahan alam
+      image:
+        type: "string"
+        example: produk1.jpg
+      tutorial:
+        type: "string"
+        example: '1.jahit rami pada tatakan rotan bulat, 2. Tempelkan tatakan rotan kedua untuk sisi tas lainnya, 3. Potong kulit imitasi'
+      productdescription:
+        example: Kerajinan dibuat degan bahan rotan yang dapat diolah menjadi karya bernilai tinggi
+        type: "string"
+   
+  Response:
+    type: "object"
+    required:
+    - "Status"
+    - "message"
+    
+    properties:
+      status:
+        type: "integer"
+      message: 
+        type: "string"
+      data:
+        type: "string"
+  
+  
+          
