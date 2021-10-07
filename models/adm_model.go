@@ -3,13 +3,15 @@ package models
 import (
 	"echo-rest/db"
 	"net/http"
+
+	validator "github.com/go-playground/validator/v10"
 )
 
 type Admin struct {
 	IdAdm   int    `json : "idadm`
-	NameAdm string `json : "nameadm"`
-	Jk      string `json : "jk"`
-	Telp    string `json : "telp"`
+	NameAdm string `json : "nameadm" validate :"required"`
+	Jk      string `json : "jk" validate :"required"`
+	Telp    string `json : "telp" validate :"required"`
 }
 
 func TakeAdmin() (Response, error) {
@@ -46,6 +48,19 @@ func TakeAdmin() (Response, error) {
 
 func AllAdmin(nameadm string, jk string, telp string) (Response, error) {
 	var res Response
+
+	v := validator.New()
+
+	adm := Admin{
+		NameAdm: nameadm,
+		Jk:      jk,
+		Telp:    telp,
+	}
+
+	err := v.Struct(adm)
+	if err != nil {
+		return res, err
+	}
 
 	con := db.CreateCon()
 
